@@ -1,0 +1,297 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "name": "Moana",
+    "description": "",
+    "id": "A79tBe"
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnConversationUpdateActivity",
+      "$designer": {
+        "id": "376720",
+        "comment": "This trigger runs when a conversation update activity is sent to the bot. This indicates a user or bot being added or removed from a conversation."
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.Foreach",
+          "$designer": {
+            "id": "518944",
+            "name": "Loop: for each item",
+            "comment": "For each member added to the conversation."
+          },
+          "itemsProperty": "turn.Activity.membersAdded",
+          "actions": [
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "641773",
+                "name": "Branch: if/else",
+                "comment": "Checks that that member added ID does not match the bot ID. This prevents the greeting message from being sent when the bot is added to a conversation."
+              },
+              "condition": "=string(dialog.foreach.value.id) != string(turn.Activity.Recipient.id)",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "859266",
+                    "name": "Send a response"
+                  },
+                  "activity": "${SendActivity_Greeting()}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnUnknownIntent",
+      "$designer": {
+        "id": "mb2n1u",
+        "comment": "This trigger fires when an incoming activity is not handled by any other trigger."
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "kMjqz1",
+            "comment": "It is recommended to show a message to the user when the bot does not know how to handle an incoming activity and provide follow up options or a help message."
+          },
+          "activity": "${SendActivity_DidNotUnderstand()}"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "zhaLXs",
+        "name": "CreateAccount",
+        "comment": "To create an account"
+      },
+      "intent": "CreateAccount",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "9XgIrr"
+          },
+          "activityProcessed": true,
+          "dialog": "CreateAccount"
+        }
+      ],
+      "entities": []
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "wRfKYs",
+        "name": "thanks"
+      },
+      "intent": "thanks",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "9nkxI4"
+          },
+          "activityProcessed": true,
+          "dialog": "Thanks"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "S3Qmng",
+        "name": "loan"
+      },
+      "intent": "loan",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "TrL55T"
+          },
+          "activityProcessed": true,
+          "dialog": "Loan"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "X7feug",
+        "name": "scheme"
+      },
+      "intent": "scheme",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "hAkA6e"
+          },
+          "activityProcessed": true,
+          "dialog": "Schemes"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "TxQSGr",
+        "name": "Casual_Greeting"
+      },
+      "intent": "Casual_Greeting",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "dNUQcY"
+          },
+          "activityProcessed": true,
+          "dialog": "Casual_Geeting"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "H6jNpq",
+        "name": "AccountDetails"
+      },
+      "intent": "AccountDetails",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "qMl0P8"
+          },
+          "activityProcessed": true,
+          "dialog": "accountInfo"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "iNAdGI",
+        "name": "ActivateCard"
+      },
+      "intent": "ActivateCard",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "jopht7"
+          },
+          "activityProcessed": true,
+          "dialog": "Activatecard"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "HfozGu",
+        "name": "Balance"
+      },
+      "intent": "Balance",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "pFwmFO"
+          },
+          "activityProcessed": true,
+          "dialog": "balanceCheck"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "346QCV",
+        "name": "Closeaccount"
+      },
+      "intent": "Closeaccount",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "xxuHuB"
+          },
+          "activityProcessed": true,
+          "dialog": "Closeaccount"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "LPFT0V",
+        "name": "transfer"
+      },
+      "intent": "transfer",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "A0VZaS"
+          },
+          "activityProcessed": true,
+          "dialog": "transferFunds"
+        }
+      ]
+    }
+  ],
+  "generator": "Moana.lg",
+  "id": "Moana",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": [
+      {
+        "intent": "CreateAccount",
+        "pattern": "create account|open account|initialize account|create an account|open an account|initialize an account"
+      },
+      {
+        "intent": "thanks",
+        "pattern": "Thanks|Thank|Bye"
+      },
+      {
+        "intent": "loan",
+        "pattern": "loan"
+      },
+      {
+        "intent": "scheme",
+        "pattern": "scheme|schemes"
+      },
+      {
+        "intent": "Casual_Greeting",
+        "pattern": "hey|hi|hello|hai|what's up|whats up"
+      },
+      {
+        "intent": "AccountDetails",
+        "pattern": "account details"
+      },
+      {
+        "intent": "ActivateCard",
+        "pattern": "activate card|activate my card|activate the card"
+      },
+      {
+        "intent": "Balance",
+        "pattern": "balance|How much do I have"
+      },
+      {
+        "intent": "Closeaccount",
+        "pattern": "close account|close my account|close"
+      },
+      {
+        "intent": "transfer",
+        "pattern": "transfer"
+      }
+    ]
+  }
+}
